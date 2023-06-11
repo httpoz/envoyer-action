@@ -22,7 +22,7 @@ runs:
       uses: fjogeleit/http-request-action@v1.14.0
       with:
         url: "https://envoyer.io/api/projects/${{inputs.projectId}}/deployments"
-        bearerToken: ${{ token }}
+        bearerToken: ${{ inputs.token}}
         data: '{"from": "branch", "branch": "${{ inputs.branch }}"}'
         customHeaders: '{"Content-Type": "application/json"}'
     - name: List deployments
@@ -30,7 +30,7 @@ runs:
       id: list-deployments
       with:
         url: "https://envoyer.io/api/projects/${{inputs.projectId}}/deployments"
-        bearerToken: ${{ token }}
+        bearerToken: ${{ inputs.token}}
         customHeaders: '{"Content-Type": "application/json"}'
         method: 'GET'
     - name: Wait for release
@@ -39,4 +39,4 @@ runs:
         url: "https://envoyer.io/api/projects/${{inputs.projectId}}/deployments/${{fromJson(steps.list-deployments.outputs.response).deployments[0].id}}"
         expected-response-field: "deployment.status"
         expected-response-field-value: "finished"
-        headers: '{"Authorization":"Bearer ${{ token }}"}'
+        headers: '{"Authorization":"Bearer ${{ inputs.token}}"}'
