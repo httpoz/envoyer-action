@@ -1,15 +1,13 @@
 # Envoyer Action
 A simple action that triggers a deployment on [Envoyer](https://envoyer.io).
 
-## Requirements
-You need to create a secret for you action called `ENVOYER_TOKEN` that holds the Bearer Token that you can generate on the Envoyer dashboard.
-
 ## Example
 ```yaml
-uses: httpoz/envoyer-action@v1
+uses: httpoz/envoyer-action@v1.1.0
 with:
   branch: "main"
   projectId: 12345
+  token: "abc"
 ```
 
 ## Dependencies
