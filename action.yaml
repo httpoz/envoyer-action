@@ -1,5 +1,8 @@
 name: "Push to Envoyer"
 description: "Triggers a release on Envoyer"
+branding:
+  icon: "chevrons-up"
+  color: "gray-dark"
 
 inputs:
   branch:
