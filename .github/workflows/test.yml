@@ -1,10 +1,7 @@
 name: "build-test"
 on: # rebuild any PRs and main branch changes
   pull_request:
-  push: 
-    branches: 
-      - main
-      - 'releases/*'
+  push:
 
 jobs: 
   test: # make sure the action works on a clean machine without building
@@ -12,5 +9,6 @@ jobs:
     steps: 
       - uses: actions/checkout@v4
       - uses: ./
+        id: exec
         with:
           milliseconds: 1000

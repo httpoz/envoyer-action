@@ -43,4 +43,4 @@ jobs:
         with: 
           name: main-windows-latest
           path: main-windows-latest
-      - uses: actions-go/update@v4
+      - uses: actions-go/update@v1
