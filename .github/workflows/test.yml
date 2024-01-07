@@ -16,6 +16,8 @@ jobs:
       - uses: actions/setup-go@v2
         with:
           go-version: ${{ matrix.go-version }}
+      - name: Set GOPROXY environment variable
+        run: echo "GOPROXY=https://proxy.golang.org,direct" >> $GITHUB_ENV
       - run: echo $GOPROXY
       - uses: actions/cache@v2
         with:
