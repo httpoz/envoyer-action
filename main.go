@@ -51,6 +51,7 @@ type Credentials struct {
 	BranchName string
 	ProjectID  string
 	Token      string
+	Timeout    time.Duration
 }
 
 func (c *Credentials) collectInputs() {
@@ -79,16 +80,12 @@ func (c *Credentials) collectInputs() {
 // create a new HTTP client with a user defined timeout
 func (c *Credentials) newHTTPClient() *http.Client {
 	var timeout time.Duration
-	if (c.Timeout != 0) {
+	if c.Timeout != 0 {
 		timeout = c.Timeout
 	} else {
 		timeout = 30 * time.Second
 	}
 
-	// it uses the envoyer url to create a new http client
-	// it uses the token the Credentials struct as the bearer token
-
-	// it returns the http client
 	return &http.Client{
 		Timeout: timeout,
 	}
