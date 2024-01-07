@@ -20,9 +20,7 @@ jobs:
         with:
           path: ~/go/pkg/mod
           key: ${{ runner.os }}-go-${{ matrix.go-version }}-${{ hashFiles('**/go.sum') }}
-          restore-keys: |
-            ${{ runner.os }}-go-${{ matrix.go-version }}-
-            ${{ runner.os }}-go-
+          restore-keys: ${{ runner.os }}-go-${{ matrix.go-version }}-
       - uses: ./
         id: exec
         with:
