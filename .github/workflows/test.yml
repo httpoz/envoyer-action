@@ -13,4 +13,4 @@ jobs:
       - uses: ./
         id: exec
         with:
-          milliseconds: 1000
+          timeout: 20
