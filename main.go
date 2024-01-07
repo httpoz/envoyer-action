@@ -2,6 +2,7 @@ package main
 
 import (
 	"fmt"
+	"net/http"
 	"os"
 	"strconv"
 	"time"
@@ -14,6 +15,10 @@ var (
 	now  = func() time.Time {
 		return time.Now()
 	}
+)
+
+const (
+	envoyerURL = "https://envoyer.io/api/projects/%s/deployments"
 )
 
 func runMain() {
@@ -36,5 +41,55 @@ func runMain() {
 }
 
 func main() {
+	var credentials Credentials
+	credentials.collectInputs()
+
 	runMain()
+}
+
+type Credentials struct {
+	BranchName string
+	ProjectID  string
+	Token      string
+}
+
+func (c *Credentials) collectInputs() {
+	projectID, pok := core.GetInput("projectId")
+	if !pok {
+		core.Error("Unable to find required input projectId")
+		exit(1)
+	}
+	c.ProjectID = projectID
+
+	token, tok := core.GetInput("token")
+	if !tok {
+		core.Error("Unable to find required input token")
+		exit(1)
+	}
+	c.Token = token
+
+	branchName, bok := core.GetInput("branchName")
+	if !bok {
+		core.Error("Unable to find required input branchName")
+		exit(1)
+	}
+	c.BranchName = branchName
+}
+
+// create a new HTTP client with a user defined timeout
+func (c *Credentials) newHTTPClient() *http.Client {
+	var timeout time.Duration
+	if (c.Timeout != 0) {
+		timeout = c.Timeout
+	} else {
+		timeout = 30 * time.Second
+	}
+
+	// it uses the envoyer url to create a new http client
+	// it uses the token the Credentials struct as the bearer token
+
+	// it returns the http client
+	return &http.Client{
+		Timeout: timeout,
+	}
 }

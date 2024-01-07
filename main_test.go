@@ -16,6 +16,13 @@ const (
 	errorOutput = `::debug::Did not find the input using plain gha input format%2C trying the actions-go one
 ::error::Unable to find required input myInput
 `
+	errorValidationOutput = `::debug::Did not find the input using plain gha input format%2C trying the actions-go one
+::error::Unable to find required input projectId
+::debug::Did not find the input using plain gha input format%2C trying the actions-go one
+::error::Unable to find required input token
+::debug::Did not find the input using plain gha input format%2C trying the actions-go one
+::error::Unable to find required input branchName
+`
 	successOutput = `::debug::Waiting 10 milliseconds
 ::debug::2020-01-10 20:10:20.000000001 +0000 UTC
 ::debug::2020-01-10 20:10:20.000000001 +0000 UTC

@@ -5,7 +5,7 @@ A simple action that triggers a deployment on [Envoyer](https://envoyer.io).
 ```yaml
 uses: httpoz/envoyer-action@v1.1.0
 with:
-  branch: "main"
+  branchName: "main"
   projectId: 12345
   token: "abc"
 ```
